@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form h1{
+            color: blueviolet;    
+        }
+        form input{
+            height: 30px;
+            width: 20%;
+        }
+        #refresh{
+            color: white;
+            background-color: brown;
+        }
+        form{
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+        form{
+            background-color:pink;
+        }
+        #button1{
+            background-color: brown;
+            color: white;
+        }
+       
+    </style>
+   
+</head>
+<body>
+    <center>
+    <form>
+        <fieldset>
+        <h1>Login</h1>
+        <label for="">Username:</label>
+        <input type="text" name="" id="" placeholder="Enter your username"><br><br>
+        <label for="">Password:</label>
+        <input type="password" name="" id="" placeholder="Enter your password">
+    <table>
+        <tr>
+            <td>Captcha:
+            <input type="text" id="mainCaptcha" readonly="readonly" style="width: 40%;">
+            <input type="button" id="refresh" value="Refresh" onclick="generateCaptcha();">
+        </td>
+    </tr>
+
+    <tr>
+        <td>Enter captcha:
+            <input type="text" id="textInput" placeholder="Enter captcha" style="width: 40%;">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="button" id="button1" value="Submit" onclick="checkCaptcha();">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span id="error" style="color: red;"></span>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span id="success" style="color: green;"></span>
+        </td>
+    </tr>
+    </table>
+    </fieldset>
+    </form>
+    </center>
+
+
+    <script type="text/javascript">
+        function generateCaptcha(){
+            var cap=new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9);
+
+            var i;
+            for (i=0;i<6;i++){
+                var a = cap[Math.floor(Math.random()*cap.length)];
+                var b = cap[Math.floor(Math.random()*cap.length)];
+                var c = cap[Math.floor(Math.random()*cap.length)];
+                var d = cap[Math.floor(Math.random()*cap.length)];
+                var e = cap[Math.floor(Math.random()*cap.length)];
+                var f = cap[Math.floor(Math.random()*cap.length)];
+            }
+            var code = a+b+c+d+e+f;
+            document.getElementById("mainCaptcha").value=code;
+
+        }
+
+        function checkCaptcha(){
+            var String1 = removeSpace(document.getElementById('mainCaptcha').value);
+            var String2 = removeSpace(document.getElementById('textInput').value);
+
+            if(String1==String2){
+                document.getElementById('success').innerHTML="Form is validated succesfully";
+                alert("Successfull");
+                window.location = "https://www.youtube.com/";
+                return true;
+            }
+            else{
+                document.getElementById('error').innerHTML = "please enter a valid captcha";
+                return false;
+
+            }
+
+        }
+
+        function removeSpace(string){
+            return string.split(' ').join('');
+            
+        }
+    </script>
+</body>
+</html>
